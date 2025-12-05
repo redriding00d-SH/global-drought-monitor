@@ -30,13 +30,15 @@ def load_font():
 
 font_base64 = load_font()
 
+# Load Material Icons font
+st.markdown("""
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+""", unsafe_allow_html=True)
+
 # Custom CSS with Geist font and optimizations
 st.markdown(f"""
 <style>
-    /* Import Material Icons for Streamlit UI elements */
-    @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-    @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
-
     @font-face {{
         font-family: 'Geist';
         src: url(data:font/truetype;charset=utf-8;base64,{font_base64}) format('truetype');
@@ -51,6 +53,21 @@ st.markdown(f"""
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-rendering: optimizeLegibility;
+    }}
+
+    /* Preserve Material Icons for Streamlit UI elements - CRITICAL for deployment */
+    button[kind="header"],
+    button[kind="header"] span,
+    [data-testid="collapsedControl"],
+    [data-testid="collapsedControl"] span,
+    [class*="st-emotion-cache"] > span,
+    span[data-baseweb="icon"],
+    .material-icons,
+    .material-icons-outlined {{
+        font-family: 'Material Icons', 'Material Icons Outlined', sans-serif !important;
+        font-feature-settings: 'liga' !important;
+        -webkit-font-feature-settings: 'liga' !important;
+        text-rendering: optimizeLegibility !important;
     }}
 
     /* Custom headers */
