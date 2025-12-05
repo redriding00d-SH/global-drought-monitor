@@ -16,11 +16,7 @@ An interactive web application for visualizing and analyzing global drought patt
 
 ## 🚀 Live Demo
 
-[Deploy to Streamlit Cloud](https://streamlit.io/cloud) ← Click to deploy your own!
-
-## 📸 Screenshots
-
-*Add your screenshots here*
+Current Live Demo [Streamlit Webapp](https://global-drought-monitor-zzbxx5dpjzbqsxzxxkbao7.streamlit.app/) 
 
 ## 🛠️ Installation
 
@@ -33,16 +29,18 @@ An interactive web application for visualizing and analyzing global drought patt
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/drought-ai-project.git
-   cd drought-ai-project
+   git clone https://github.com/redriding00d-SH/global-drought-monitor.git
    ```
+   ```bash
+   git lfs install  # Required for downloading the 362MB dataset
+   ``` 
 
 2. **Install dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Download the dataset** (362MB - not included in repo)
+3. **Download the dataset** (included with git lfs)
    - Visit: https://spei.csic.es/database.html
    - Download SPEI-01 (1-month scale) in NetCDF format
    - Place `spei01.nc` in the `data/` directory
