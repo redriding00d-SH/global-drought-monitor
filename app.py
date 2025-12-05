@@ -33,6 +33,10 @@ font_base64 = load_font()
 # Custom CSS with Geist font and optimizations
 st.markdown(f"""
 <style>
+    /* Import Material Icons for Streamlit UI elements */
+    @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+    @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Outlined');
+
     @font-face {{
         font-family: 'Geist';
         src: url(data:font/truetype;charset=utf-8;base64,{font_base64}) format('truetype');
@@ -374,7 +378,9 @@ def render_continental_view(continent_name, continent_data, ds, time_idx, select
         # Get country centroids for this continent
         country_centroids = get_country_centroids(continent_name)
 
-        # Categorize each country - show in ALL categories present in their region
+        # Categorize countries/states by drought severity
+        # Australia: uses average SPEI (states are huge)
+        # Other continents: uses dominant category (most common condition)
         countries = continent_data["countries"]
         country_categories = {i: [] for i in range(7)}
 
@@ -382,17 +388,27 @@ def render_continental_view(continent_name, continent_data, ds, time_idx, select
             if country in country_centroids:
                 lat, lon = country_centroids[country]
                 # Use larger sampling grid for Australian states (they're huge!)
-                grid_size = 20 if continent_name == "Australia" else 5
+                grid_size = 50 if continent_name == "Australia" else 5
 
                 # Get SPEI values in the country's region
                 valid_values = get_region_spei_values(spei_cont, lat, lon, grid_size)
 
                 if len(valid_values) > 0:
-                    # Categorize all values once, then check which categories are present
-                    categorized = np.array([categorize_spei(v) for v in valid_values])
-                    for cat_idx in range(7):
-                        if np.any(categorized == cat_idx):
-                            country_categories[cat_idx].append(country)
+                    if continent_name == "Australia":
+                        # For Australian states, use AVERAGE SPEI (states are too large for dominant category)
+                        avg_spei = np.mean(valid_values)
+                        category = categorize_spei(avg_spei)
+                        country_categories[category].append(country)
+                    else:
+                        # For other countries, use DOMINANT category (most common)
+                        categorized = np.array([categorize_spei(v) for v in valid_values])
+
+                        # Count occurrences of each category
+                        category_counts = np.bincount(categorized, minlength=7)
+
+                        # Assign country to the category with the most occurrences
+                        dominant_category = np.argmax(category_counts)
+                        country_categories[dominant_category].append(country)
                 else:
                     # No valid data, use continental mean as fallback
                     category = categorize_spei(np.nanmean(spei_cont.values))
