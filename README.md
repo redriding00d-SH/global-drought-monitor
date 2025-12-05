@@ -17,7 +17,6 @@ An interactive web application for visualizing and analyzing global drought patt
 ## 🚀 Live Demo
 
 Current Live Demo [Streamlit Webapp](https://global-drought-monitor-zzbxx5dpjzbqsxzxxkbao7.streamlit.app/) 
-[Deploy to Streamlit Cloud](https://streamlit.io/cloud) 
 
 ## 🛠️ Installation
 
@@ -41,7 +40,7 @@ Current Live Demo [Streamlit Webapp](https://global-drought-monitor-zzbxx5dpjzbq
    pip install -r requirements.txt
    ```
 
-3. **Download the dataset** (362MB - not included in repo)
+3. **Download the dataset** (included with git lfs)
    - Visit: https://spei.csic.es/database.html
    - Download SPEI-01 (1-month scale) in NetCDF format
    - Place `spei01.nc` in the `data/` directory
