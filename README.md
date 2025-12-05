@@ -18,9 +18,7 @@ An interactive web application for visualizing and analyzing global drought patt
 
 [Deploy to Streamlit Cloud](https://streamlit.io/cloud) ← Click to deploy your own!
 
-## 📸 Screenshots
-
-*Add your screenshots here*
+Current Live Demo [Access Live View of App ]([https://streamlit.io/cloud](https://global-drought-monitor-zzbxx5dpjzbqsxzxxkbao7.streamlit.app/)) 
 
 ## 🛠️ Installation
 
