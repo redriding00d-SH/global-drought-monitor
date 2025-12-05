@@ -16,9 +16,8 @@ An interactive web application for visualizing and analyzing global drought patt
 
 ## 🚀 Live Demo
 
-[Deploy to Streamlit Cloud](https://streamlit.io/cloud) ← Click to deploy your own!
-
-Current Live Demo [Access Live View of App ]([https://streamlit.io/cloud](https://global-drought-monitor-zzbxx5dpjzbqsxzxxkbao7.streamlit.app/)) 
+Current Live Demo [Streamlit Webapp](https://global-drought-monitor-zzbxx5dpjzbqsxzxxkbao7.streamlit.app/) 
+[Deploy to Streamlit Cloud](https://streamlit.io/cloud) 
 
 ## 🛠️ Installation
 
@@ -31,9 +30,11 @@ Current Live Demo [Access Live View of App ]([https://streamlit.io/cloud](https:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/drought-ai-project.git
-   cd drought-ai-project
+   git clone https://github.com/redriding00d-SH/global-drought-monitor.git
    ```
+   ```bash
+   git lfs install  # Required for downloading the 362MB dataset
+   ``` 
 
 2. **Install dependencies**
    ```bash
